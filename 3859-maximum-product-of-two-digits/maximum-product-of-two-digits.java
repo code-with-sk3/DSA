@@ -9,27 +9,9 @@ class Solution {
             arr.add(x);
             n1 = n1/10;
         }
-        int[] ar = new int[arr.size()];
-        for(int i=0;i<arr.size();i++){
-            ar[i] = arr.get(i);
-        }
-        for(int i : arr){
-            if(i>max){
-                max = i;
-            }
-        }
-        
-        for(int i=0;i<ar.length;i++){
-            if(ar[i]==max){
-                ar[i] = 0;
-                break;
-            }
-        }
-        for(int i=0;i<ar.length;i++){
-            if(ar[i]>smax || ar[i]==max){
-                smax = ar[i];
-            }
-        }
+        Collections.sort(arr);
+        max = arr.get(arr.size()-1);
+        smax = arr.get(arr.size()-2);
         return max*smax;
     }
 }
