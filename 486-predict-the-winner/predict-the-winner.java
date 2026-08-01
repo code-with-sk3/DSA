@@ -1,15 +1,22 @@
 class Solution {
+    Integer[][] dp;
+
     public boolean predictTheWinner(int[] nums) {
-        return solve(0, nums.length - 1, nums) >= 0;
+        int n = nums.length;
+        dp = new Integer[n][n];
+        return solve(0, n - 1, nums) >= 0;
     }
 
     private int solve(int i, int j, int[] nums) {
         if (i == j)
             return nums[i];
 
+        if (dp[i][j] != null)
+            return dp[i][j];
+
         int left = nums[i] - solve(i + 1, j, nums);
         int right = nums[j] - solve(i, j - 1, nums);
 
-        return Math.max(left, right);
+        return dp[i][j] = Math.max(left, right);
     }
 }
